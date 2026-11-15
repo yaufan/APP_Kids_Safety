@@ -64,6 +64,5 @@
 - 圖：`design/art/`（`kit.py` 漫畫網點畫法：shapely 形狀＋真的小圓網點＋clipPath＋深藍框；`hero.py` 15 個姿勢 × 4 種髮型、`helpers.py`、`road.py`、`rescue.py`、`body.py`、`home.py`、`badges.py`、`ui.py`、`icon.py`；`build.py all`、`sheet`、`fluttercheck`），約定在 `docs/art.md`；聲音：`design/sounds/make_sounds.py`（45 個檔）。
 
 ## 目前的狀態（2026-11-15）
-- 0.1.0 做好了（還沒發布）：全部測試通過（含手機和平板的完整流程）、`flutter analyze` 零問題、215 張圖都通過 `fluttercheck`。示範影片和截圖在 `app/build/`。
-- GitHub 專案 2026-11-15 建好了，`claude/relaxed-albattani-6mbwpz` 分支已推上去；照 skill `release-kids-app` 發布（第一次推 main 前要先問，也要先在專案加 Secrets）。
+- 0.1.0 已發布（2026-11-15）：Releases 有三個 APK，App 和 Release 都成功；Secrets 加好了（第一次密碼貼錯，重貼後重新執行才成功）。
 - 還沒在真手機上試過：TTS 的聲音和速度、拖東西和按住的手感、聲音好不好聽（做的時候沒辦法用耳朵聽），要使用者裝到手機後再看。
