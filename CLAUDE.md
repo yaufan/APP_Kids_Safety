@@ -65,5 +65,5 @@
 
 ## 目前的狀態（2026-11-15）
 - 0.1.0 做好了（還沒發布）：全部測試通過（含手機和平板的完整流程）、`flutter analyze` 零問題、215 張圖都通過 `fluttercheck`。示範影片和截圖在 `app/build/`。
-- GitHub 專案使用者還沒建；在本機的 `claude/relaxed-albattani-6mbwpz` 分支 commit，建好後再推、再照 skill `release-kids-app` 發布（第一次推 main 前要先問）。
+- GitHub 專案 2026-11-15 建好了，`claude/relaxed-albattani-6mbwpz` 分支已推上去；照 skill `release-kids-app` 發布（第一次推 main 前要先問，也要先在專案加 Secrets）。
 - 還沒在真手機上試過：TTS 的聲音和速度、拖東西和按住的手感、聲音好不好聽（做的時候沒辦法用耳朵聽），要使用者裝到手機後再看。
