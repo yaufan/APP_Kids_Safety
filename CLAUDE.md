@@ -59,10 +59,11 @@
 
 ## 程式在哪裡
 - `app/lib/core/`：世界、14 關、幫手、安全大人、真實生活清單的名字（`content.dart`）；每一關的畫面和步驟（`levels.dart`：小小和大的差別、`crossWords` 集轉探避揮、`bodySpots` 身體紅綠燈的位置）；畫面裡的東西和它們的狀態（`scene.dart`：4:3 的框、`Look` 位置、`Sprite` 狀態）；步驟的種類（`steps.dart`：點、拖、選、按住、數字鍵盤、大聲說一次、找危險）；一關玩到哪裡（`run.dart`：純 Dart，測試直接玩完每一關）；設定、小隊員的樣子、存檔（`game.dart`：電話只存在這裡，不進 log）；存檔、聲音、語音。
-- `app/lib/app/`：路由和休息時間（`app.dart`，`RestGuard` 不管 `/parent` 和 `/intro`）、`hero_art.dart`（小隊員的圖換成小朋友選的安全帽和膚色）、`widgets.dart`（`Pressable` 原始手指事件、漫畫字、對話框、爆炸框）。
+- `app/lib/app/`：路由和休息時間（`app.dart`，`RestGuard` 不管 `/parent` 和 `/intro`，在那裡的時間也不算玩的時間）、`hero_art.dart`（小隊員的圖換成小朋友選的安全帽和膚色）、`widgets.dart`（`Pressable` 原始手指事件、漫畫字、對話框、爆炸框）。
 - `app/lib/features/`：第一次選樣子（`setup/`）、基地（`base/`）、世界（`world/`）、關卡（`level/`：`scene_view.dart` 畫面和拖放、`step_panel.dart` 下面的按鈕和鍵盤、`level_screen.dart` 做完的頁）、安全帽（`helmet/`）、身體世界的家長說明（`intro/`）、休息（`rest/`）、家長關卡和家長模式（`parent/`）。
 - 圖：`design/art/`（`kit.py` 漫畫網點畫法：shapely 形狀＋真的小圓網點＋clipPath＋深藍框；`hero.py` 15 個姿勢 × 4 種髮型、`helpers.py`、`road.py`、`rescue.py`、`body.py`、`home.py`、`badges.py`、`ui.py`、`icon.py`；`build.py all`、`sheet`、`fluttercheck`），約定在 `docs/art.md`；聲音：`design/sounds/make_sounds.py`（45 個檔）。
 
 ## 目前的狀態（2026-11-15）
 - 0.1.0 已發布（2026-11-15）：Releases 有三個 APK，App 和 Release 都成功；Secrets 加好了（第一次密碼貼錯，重貼後重新執行才成功）。
+- 0.1.1 準備好了、**還沒發布**（在工作分支上，推 `main` 要先問使用者）：檢查程式後修的問題——做完一步幫手的「為什麼」說完才換下一步、第二隻手指不會害按住或拖的東西放掉、家長模式的時間不算玩的時間、語音一開始不會互相打斷、最後一個世界不能關。測試在 `app/test/screens_test.dart`。
 - 還沒在真手機上試過：TTS 的聲音和速度、拖東西和按住的手感、聲音好不好聽（做的時候沒辦法用耳朵聽），要使用者裝到手機後再看。
