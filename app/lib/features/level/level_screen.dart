@@ -46,7 +46,13 @@ class _LevelScreenState extends ConsumerState<LevelScreen> {
   var _burstKey = 0;
   var _finished = false;
   var _crest = false;
-  Timer? _next;
+
+  /// After a done step: the shortest wait, and the longest wait for the
+  /// helper to finish saying why (a speech engine that never says it is done).
+  Timer? _next, _cap;
+  var _waitTurn = 0;
+
+  static const maxWait = Duration(seconds: 14);
 
   Lv get lv => widget.lv;
 
@@ -70,13 +76,45 @@ class _LevelScreenState extends ConsumerState<LevelScreen> {
 
   @override
   void dispose() {
-    _next?.cancel();
+    _stopWaiting();
     super.dispose();
   }
 
-  void _say(String text) {
+  void _stopWaiting() {
+    _waitTurn++;
+    _next?.cancel();
+    _cap?.cancel();
+  }
+
+  Future<void> _say(String text) {
     setState(() => _line = text);
-    speak(ref, text);
+    return speak(ref, text);
+  }
+
+  /// On to the next step once [ms] have gone by and [spoken] is said, so
+  /// the next line never cuts off why this step was done.
+  void _advanceAfter(int ms, Future<void> spoken) {
+    _stopWaiting();
+    final turn = _waitTurn;
+    var waited = false, said = false;
+    void go() {
+      if (!waited || !said || turn != _waitTurn || !mounted) return;
+      _cap?.cancel();
+      _advance();
+    }
+
+    _next = Timer(Duration(milliseconds: ms), () {
+      waited = true;
+      go();
+    });
+    _cap = Timer(Duration(milliseconds: (maxWait.inMilliseconds * LevelScreen.pace).round()), () {
+      said = true;
+      go();
+    });
+    spoken.catchError((_) {}).whenComplete(() {
+      said = true;
+      go();
+    });
   }
 
   void _startStep() {
@@ -115,9 +153,9 @@ class _LevelScreenState extends ConsumerState<LevelScreen> {
       case Res.done:
         final parts = s is ChooseStep ? [r.say ?? s.done] : [r.say, s?.done];
         final text = parts.whereType<String>().join(' ');
-        if (text.isNotEmpty) _say(text);
+        final spoken = text.isNotEmpty ? _say(text) : Future<void>.value();
         final ms = (900 + 170 * text.length).clamp(1500, 6500) * LevelScreen.pace;
-        _next = Timer(Duration(milliseconds: ms.round()), _advance);
+        _advanceAfter(ms.round(), spoken);
       case Res.none:
         break;
     }
@@ -146,7 +184,7 @@ class _LevelScreenState extends ConsumerState<LevelScreen> {
   }
 
   void _again() {
-    _next?.cancel();
+    _stopWaiting();
     setState(_begin);
     _startStep();
   }

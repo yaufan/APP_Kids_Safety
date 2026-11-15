@@ -5,25 +5,28 @@ import 'package:flutter_tts/flutter_tts.dart';
 /// Mandarin, calm and not fast. Parents can turn it off; every line is also
 /// on screen.
 abstract interface class Voice {
-  /// Says [text] (stopping whatever was being said).
+  /// Says [text] (stopping whatever was being said); completes when it has
+  /// been said, or was stopped.
   Future<void> say(String text);
   Future<void> stop();
 }
 
 class SystemVoice implements Voice {
   FlutterTts? _tts;
+  Future<FlutterTts>? _setUp;
   var _said = 0;
 
-  Future<FlutterTts> _engine() async {
-    final existing = _tts;
-    if (existing != null) return existing;
-    final tts = _tts = FlutterTts();
-    await tts.awaitSpeakCompletion(true);
-    await tts.setLanguage('zh-TW');
-    await tts.setSpeechRate(0.45);
-    await tts.setPitch(1.1);
-    return tts;
-  }
+  /// The engine, set up once. Every line waits for the whole set-up, so a
+  /// second line asked for while the first is still setting up is neither
+  /// said too fast nor stopped by the first one's late stop().
+  Future<FlutterTts> _engine() => _setUp ??= () async {
+        final tts = _tts = FlutterTts();
+        await tts.awaitSpeakCompletion(true);
+        await tts.setLanguage('zh-TW');
+        await tts.setSpeechRate(0.45);
+        await tts.setPitch(1.1);
+        return tts;
+      }();
 
   @override
   Future<void> say(String text) async {

@@ -26,10 +26,11 @@ class Art extends StatelessWidget {
   }
 }
 
-/// Says a line out loud (if the parent left the voice on).
-void speak(WidgetRef ref, String text) {
-  if (!ref.read(gameProvider).settings.voice) return;
-  ref.read(voiceProvider).say(text);
+/// Says a line out loud (if the parent left the voice on). Completes when
+/// it has been said (or straight away with the voice off).
+Future<void> speak(WidgetRef ref, String text) {
+  if (!ref.read(gameProvider).settings.voice) return Future.value();
+  return ref.read(voiceProvider).say(text);
 }
 
 void sfx(WidgetRef ref, String name) => ref.read(soundsProvider).play(name);
