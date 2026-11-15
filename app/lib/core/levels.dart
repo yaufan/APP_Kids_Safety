@@ -67,7 +67,7 @@ List<Part> _light(bool big) {
   Scene scene() => Scene(_street, [
         _pedLight(),
         _car('car', 'road/car_blue'),
-        _hero(Look(pose('stand'), .5, .82, .15, .3), arts: {'no': pose('stop')}, moves: {'cross': Look(pose('walk'), .5, .2, .1, .2)}),
+        _hero(Look(pose('stand'), .5, .64, .183, .366), arts: {'no': pose('stop')}, moves: {'cross': Look(pose('walk'), .5, .178, .122, .244)}),
         _helper(Helper.dog, .14, .8, arts: {'stop': Helper.dog.art('stop')}),
       ]);
   return [
@@ -112,13 +112,13 @@ List<Part> _cross(bool big) {
   final scene = Scene(_street, [
     _pedLight(),
     _car('car', 'road/car_red', stopArt: 'road/car_red_wave'),
-    _hero(Look(pose('stand'), .5, .93, .15, .3), moves: {
-      'curb': Look(pose('stand'), .5, .8, .15, .3),
-      'look_l': Look(pose('look'), .5, .8, .15, .3, flip: true),
-      'look_r': Look(pose('look'), .5, .8, .15, .3),
-      'peek': Look(pose('peek'), .5, .79, .15, .3),
-      'wave': Look(pose('wave'), .5, .8, .15, .3),
-      'cross': Look(pose('walk'), .5, .2, .1, .2),
+    _hero(Look(pose('stand'), .5, .72, .183, .366), moves: {
+      'curb': Look(pose('stand'), .5, .58, .183, .366),
+      'look_l': Look(pose('look'), .5, .58, .183, .366, flip: true),
+      'look_r': Look(pose('look'), .5, .58, .183, .366),
+      'peek': Look(pose('peek'), .5, .57, .183, .366),
+      'wave': Look(pose('wave'), .5, .58, .183, .366),
+      'cross': Look(pose('walk'), .5, .178, .122, .244),
     }),
     const Sprite('arrow_l', '左邊', Look(null, .3, .62, .12, .16), arts: {'on': 'ui/arrow_l'}, anim: Anim.bob),
     const Sprite('arrow_r', '右邊', Look(null, .7, .62, .12, .16), arts: {'on': 'ui/arrow_r'}, anim: Anim.bob),
@@ -176,7 +176,7 @@ List<Part> _hand(bool big) => [
           const Sprite('mom', '媽媽', Look('road/mom', .3, .62, .22, .62), arts: {'hand': 'road/mom_hand'}),
           const Sprite('balloon', '氣球', Look('road/balloon', .72, .4, .14, .4), anim: Anim.bob),
           const Sprite('pup', '小狗', Look('road/leash_dog', .85, .82, .18, .24)),
-          _hero(Look(pose('stand'), .55, .8, .15, .3), moves: {'hand': Look(pose('hold'), .44, .8, .15, .3)}),
+          _hero(Look(pose('stand'), .55, .767, .183, .366), moves: {'hand': Look(pose('hold'), .44, .767, .183, .366)}),
         ]),
         [
           const TapStep(['mom'],
@@ -194,7 +194,7 @@ List<Part> _hand(bool big) => [
           const Sprite('car', '車子', Look('road/car_parked', .74, .56, .46, .32)),
           const Sprite('ball', '球', Look('road/ball', .5, .86, .08, .1), moves: {'away': Look('road/ball', .78, .8, .08, .1), 'back': Look('road/ball', .2, .9, .08, .1)}),
           const Sprite('mom', '媽媽', Look('road/mom_hand', .2, .6, .22, .62)),
-          _hero(Look(pose('hold'), .34, .8, .15, .3)),
+          _hero(Look(pose('hold'), .34, .767, .183, .366)),
           _helper(Helper.dog, .92, .8, arts: {'stop': Helper.dog.art('stop')}),
         ]),
         [
@@ -224,7 +224,7 @@ List<Part> _carLevel(bool big) => [
       Part(
         Scene('road/scooter_bg', [
           const Sprite('scooter', '機車', Look('road/scooter', .66, .64, .56, .5)),
-          _hero(Look(pose('bare'), .3, .7, .17, .36), arts: {'helmet': pose('stand')}),
+          _hero(Look(pose('bare'), .3, .66, .207, .439), arts: {'helmet': pose('stand')}),
           const Sprite('kidhelmet', '安全帽', Look('road/kid_helmet', .62, .26, .14, .14), arts: {'off': null}, drag: true),
           _zone('head', '頭', .3, .44, .14, .14),
           const Sprite('chin', '扣環', Look(null, .3, .56, .07, .07), arts: {'on': 'road/chin_buckle'}),
@@ -244,7 +244,7 @@ List<Part> _lost(bool big, Settings s, HeroLook hero) {
     const Sprite('clerk', '店員', Look('road/clerk', .38, .7, .17, .42)),
     const Sprite('momkid', '帶小孩的媽媽', Look('road/mom_kid', .64, .72, .22, .44)),
     const Sprite('passer', '路人', Look('road/passer', .88, .72, .16, .44)),
-    _hero(Look(pose('stand'), .5, .88, .14, .26), arts: {'stay': pose('stand')}),
+    _hero(Look(pose('stand'), .5, .852, .171, .317), arts: {'stay': pose('stand')}),
   ]);
   final phone = s.phone;
   return [
@@ -258,7 +258,7 @@ List<Part> _lost(bool big, Settings s, HeroLook hero) {
           word: '找到了！',
           done: '對！請他們幫忙找爸爸媽媽。'),
     ]),
-    Part(Scene('road/market', [_helper(Helper.dog, .3, .74), _hero(Look(pose('stand'), .6, .8, .16, .3))]), [
+    Part(Scene('road/market', [_helper(Helper.dog, .3, .74), _hero(Look(pose('stand'), .6, .767, .195, .366))]), [
       if (phone.isEmpty)
         const TapStep(['btn:好'], say: '爸爸媽媽還沒有把電話告訴我。請他們在家長模式打進來，下次我們一起背！', hint: '點「好」', word: '好！')
       else
@@ -290,7 +290,7 @@ Part _stairs(String why, {String say = '要從哪裡下樓呢？'}) => Part(
       Scene('rescue/stairwell', [
         const Sprite('lift', '電梯', Look('rescue/lift', .28, .52, .3, .7)),
         const Sprite('stairs', '樓梯', Look('rescue/stairs', .72, .52, .34, .7)),
-        _hero(Look(pose('stand'), .5, .86, .14, .26), moves: {'down': Look(pose('walk'), .76, .78, .12, .22)}),
+        _hero(Look(pose('stand'), .5, .832, .171, .317), moves: {'down': Look(pose('walk'), .76, .756, .146, .268)}),
       ]),
       [
         TapStep(const ['stairs'], say: say, hint: '點樓梯或電梯', wrong: {'lift': why}, after: const {'hero': 'down'}, word: '走樓梯！', wordAt: 'stairs', sfx: 'steps', done: '走樓梯，跟著大人到外面。'),
@@ -306,9 +306,9 @@ List<Part> _quake(bool big) => [
           Sprite('table', '桌子', Look('rescue/table', .48, .72, .44, .3)),
           Sprite('under', '桌子下面', Look(null, .48, .8, .3, .2)),
           Sprite('leg', '桌腳', Look(null, .3, .8, .08, .18)),
-          Sprite('hero', '小隊員', Look('@hero/stand', .7, .82, .14, .28), moves: {
-            'under': Look('@hero/crouch', .5, .8, .16, .2),
-            'cover': Look('@hero/cover', .5, .8, .16, .2),
+          Sprite('hero', '小隊員', Look('@hero/stand', .7, .789, .171, .342), moves: {
+            'under': Look('@hero/crouch', .5, .778, .195, .244),
+            'cover': Look('@hero/cover', .5, .778, .195, .244),
           }, drag: true),
         ], flags: {SceneFlag.shake: 'on'}),
         [
@@ -343,8 +343,8 @@ List<Part> _fire(bool big) => [
           const Sprite('toys', '玩具', Look('rescue/toys', .62, .84, .14, .14)),
           const Sprite('door', '門', Look('rescue/door', .87, .56, .2, .54)),
           const Sprite('towel', '毛巾', Look('rescue/towel', .4, .86, .1, .1), arts: {'wet': 'rescue/towel_wet', 'off': null}, moves: {'wet': Look('rescue/towel_wet', .17, .52, .1, .1)}, drag: true),
-          _zone('mouth', '嘴巴', .2, .8, .14, .14),
-          _hero(Look(pose('crawl'), .2, .86, .2, .18), arts: {'towel': pose('crawl_towel')}, moves: {'out': Look(pose('crawl_towel'), .84, .86, .2, .18)}, drag: true),
+          _zone('mouth', '嘴巴', .26, .78, .14, .14),
+          _hero(Look(pose('crawl'), .2, .84, .27, .24), arts: {'towel': pose('crawl_towel')}, moves: {'out': Look(pose('crawl_towel'), .8, .84, .27, .24)}, drag: true),
         ]),
         [
           const DragStep('towel', 'sink', say: '有煙！先把毛巾拖到水龍頭，弄濕。', hint: '把毛巾拖到水龍頭', after: {'towel': 'wet'}, word: '嘩～', wordAt: 'sink', sfx: 'water', done: '毛巾濕了。'),
@@ -365,7 +365,7 @@ List<Part> _fire(bool big) => [
       Part(
         Scene('rescue/house_out', [
           _helper(Helper.cat, .78, .8, arts: {'phone': Helper.cat.art('phone')}),
-          _hero(Look(pose('stand'), .58, .82, .14, .28)),
+          _hero(Look(pose('stand'), .58, .789, .171, .342)),
         ]),
         [
           KeypadStep('119', say: '到外面了！請大人打 119。我們練習按：一、一、九。', hint: '照順序按 1、1、9（練習用，不會真的打）', glow: !big, wrongSay: '照順序按：一、一、九。', after: const {'cat': 'phone'}, word: '嘟嚕嚕～', done: '電話通了。'),
@@ -383,7 +383,7 @@ List<Part> _typhoon(bool big) => [
           _zone('inside', '屋子裡', .5, .84, .3, .22),
           const Sprite('table', '桌子', Look('rescue/side_table', .16, .82, .2, .22)),
           const Sprite('torch', '手電筒', Look('rescue/torch', .36, .92, .1, .08), moves: {'table': Look('rescue/torch', .16, .7, .1, .08), 'lit': Look('rescue/torch_on', .16, .7, .1, .08)}, drag: true),
-          _hero(Look(pose('stand'), .5, .62, .14, .28)),
+          _hero(Look(pose('stand'), .5, .589, .171, .342)),
         ], flags: {SceneFlag.dark: 'off'}),
         [
           const TapStep(['window'], say: '颱風來了，風好大。點窗戶，把它關起來。', hint: '點窗戶', startSfx: 'wind', after: {'window': 'closed'}, word: '喀！', wordAt: 'window', sfx: 'window', done: '窗戶關好，雨就不會跑進來。'),
@@ -411,7 +411,7 @@ const bodySpots = [
 List<Part> _bodyLights(bool big) {
   final scene = Scene('body/pool', [
     _hero(Look(pose('swim'), .42, .52, .4, .96)),
-    for (final (id, zh, light, x, y, _) in bodySpots) Sprite(id, zh, Look('body/dot_white', x, y, .07, .09), arts: {'lit': 'body/dot_$light'}),
+    for (final (id, zh, light, x, y, _) in bodySpots) Sprite(id, zh, Look('body/dot_white', x, y, .09, .11), arts: {'lit': 'body/dot_$light'}),
     _helper(Helper.bunny, .86, .78),
   ]);
   ChooseStep ask(String id) {
@@ -442,7 +442,7 @@ List<Part> _bodyLights(bool big) {
 List<Part> _sayNo(bool big, Settings s) {
   Part situation(String id, String zh, String art, String say, String ok) => Part(
         Scene('body/park', [
-          _hero(Look(pose('stand'), .3, .76, .17, .36), arts: {'stop': pose('stop')}),
+          _hero(Look(pose('stand'), .3, .72, .207, .439), arts: {'stop': pose('stop')}),
           Sprite(id, zh, Look('body/${art}_ask', .66, .7, .26, .5), moves: {'back': Look('body/${art}_ok', .84, .72, .22, .44)}),
           _helper(Helper.bunny, .1, .84, w: .13, h0: .26),
         ]),
@@ -457,7 +457,7 @@ List<Part> _sayNo(bool big, Settings s) {
     situation('elephant', '象爺爺', 'elephant', '象爺爺想親你的臉，你不想要。按住「不要！」。', '象爺爺說：「好，那我們擊掌。」'),
     Part(
       Scene('body/park', [
-        _hero(Look(pose('hug'), .36, .76, .17, .36), arts: {'stop': pose('stand')}),
+        _hero(Look(pose('hug'), .36, .72, .207, .439), arts: {'stop': pose('stand')}),
         const Sprite('puppy', '小狗', Look('body/puppy_no', .66, .82, .2, .26), arts: {'happy': 'body/puppy_ok'}),
         _helper(Helper.bunny, .1, .84, w: .13, h0: .26),
       ]),
@@ -514,7 +514,7 @@ List<Part> _kitchen(bool big) => _room(
 List<Part> _living(bool big) => _room(
       'home/living',
       const [
-        Sprite('socket', '插座', Look('home/socket', .2, .74, .08, .1), arts: {'safe': 'home/socket_cover'}),
+        Sprite('socket', '插座', Look('home/socket', .07, .68, .08, .1), arts: {'safe': 'home/socket_cover'}),
         Sprite('cabinet', '高櫃子', Look('home/high_cabinet', .5, .2, .2, .18)),
         Sprite('pills', '藥', Look('home/medicine', .44, .62, .1, .1), moves: {'safe': Look('home/medicine', .5, .2, .08, .08)}, drag: true),
         Sprite('coins', '硬幣和鈕扣', Look('home/coins', .64, .88, .12, .08), moves: {'safe': Look(null, .82, .84, .1, .08)}, drag: true),
