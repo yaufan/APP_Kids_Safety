@@ -36,7 +36,6 @@ def park():
     for x, r in [(40, 46), (110, 38), (300, 52)]:
         p.shape(union(circle(x, 150, r), circle(x + r * .7, 160, r * .8)), "#7CC47A", hl=False)
     p.shape(rect(0, 180, W, 120), "#A8D5A2", hl=False, sparse=1.7)
-    p.shape(rrect(150, 214, 120, 14, 6), "#E4D7C4", hl=False)
     for x, c in [(30, "#F27AA0"), (190, YEL), (370, "#F27AA0")]:
         for i in range(3):
             p.shape(circle(x + i * 9, 262 + (i % 2) * 6, 4.5), c, dots=False, hl=False)
