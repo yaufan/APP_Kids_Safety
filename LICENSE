@@ -1,0 +1,74 @@
+安全小隊（APP_Kids_Safety）
+Copyright © 2026 yaufan (https://github.com/yaufan). 非商業使用授權。
+Non-commercial license.
+
+────────────────────────────────────────
+中文
+────────────────────────────────────────
+
+1. 這個儲存庫裡的程式碼、圖畫、角色、聲音、文字和設計文件（以下合稱「本作品」），
+   著作權都屬於作者 yaufan。
+
+2. 只要是**非商業用途**，任何人都可以看、複製、修改、分享本作品，但要：
+   (a) 註明出處：作者 yaufan，以及本儲存庫的網址；
+   (b) 保留這份授權，修改後的版本也用這份授權分享；
+   (c) 不暗示作者支持或推薦修改後的版本。
+   「非商業用途」是指自己、家人使用，或學校、非營利團體的教學，不收任何費用，
+   也不用來賺錢。
+
+3. 沒有作者事先的書面同意，不可以：
+   (a) 把本作品用在商業用途：販賣、收費、放廣告、應用程式內購買，或放進收費或
+       用來營利的 APP、網站、產品或服務；
+   (b) 用本作品或它的名稱、角色在應用程式商店上架；
+   (c) 用本作品訓練、微調或評估 AI 模型；
+   (d) 把以上任何權利授權給別人。
+
+4. 這份授權適用於本儲存庫的每一個版本。最早的版本中如果出現 Apache License 2.0
+   的檔案，那只是建立儲存庫時自動產生的預設檔；作者從來沒有用它授權本作品。
+
+5. 別人做的部分（如果有，列在 NOTICE.md）照它們自己的授權，不受這份授權限制。
+
+6. 本作品照現況提供，作者不負任何明示或默示的保證責任，也不對使用本作品造成的
+   任何損害負責。
+
+7. 想商業使用，或有其他問題，請透過 GitHub（https://github.com/yaufan）聯絡作者。
+
+8. 中文版和英文版的意思不同時，以中文版為準。
+
+────────────────────────────────────────
+English
+────────────────────────────────────────
+
+1. The code, artwork, characters, sounds, text and design documents in this
+   repository (together, "the Work") are copyrighted by the author, yaufan.
+
+2. For **non-commercial purposes only**, anyone may view, copy, modify and
+   share the Work, provided that they:
+   (a) credit the author, yaufan, and link to this repository;
+   (b) keep this license, and share modified versions under it;
+   (c) do not suggest that the author endorses a modified version.
+   "Non-commercial" means personal or family use, or teaching in a school or
+   non-profit organisation, without charging anyone and not for profit.
+
+3. Without the author's prior written permission, you may not:
+   (a) use the Work commercially: sell it, charge for it, show ads, offer
+       in-app purchases, or put it in a paid or profit-making app, website,
+       product or service;
+   (b) publish the Work, its name or its characters in an app store;
+   (c) use the Work to train, fine-tune or evaluate AI models;
+   (d) sublicense any of the above.
+
+4. This license covers every version in this repository. Where the first
+   version contains an Apache License 2.0 file, that file was a default
+   created with the repository; the author never licensed the Work under it.
+
+5. Parts made by others (if any, listed in NOTICE.md) remain under their own
+   licenses and are not restricted by this license.
+
+6. The Work is provided "as is", without warranty of any kind, express or
+   implied. The author is not liable for any damage arising from its use.
+
+7. For commercial use or any other question, contact the author through
+   GitHub (https://github.com/yaufan).
+
+8. If the Chinese and English versions differ, the Chinese version prevails.
