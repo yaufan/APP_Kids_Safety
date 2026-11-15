@@ -179,7 +179,9 @@ class _ParentScreenState extends ConsumerState<ParentScreen> {
                           _switch(
                             wd.zh,
                             s.shows(wd),
-                            (on) => _game.settings((x) => x.copyWith(off: on ? ({...x.off}..remove(wd)) : {...x.off, wd})),
+                            // The last world on stays on (turning it off would
+                            // bring back 馬路世界, which the parent turned off).
+                            s.shows(wd) && s.off.length >= World.values.length - 1 ? null : (on) => _game.settings((x) => x.copyWith(off: on ? ({...x.off}..remove(wd)) : {...x.off, wd})),
                             note: wd == World.body ? Strings.bodyNote : null,
                             key: ValueKey('world-${wd.name}'),
                           ),
