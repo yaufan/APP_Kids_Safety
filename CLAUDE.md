@@ -64,6 +64,5 @@
 - 圖：`design/art/`（`kit.py` 漫畫網點畫法：shapely 形狀＋真的小圓網點＋clipPath＋深藍框；`hero.py` 15 個姿勢 × 4 種髮型、`helpers.py`、`road.py`、`rescue.py`、`body.py`、`home.py`、`badges.py`、`ui.py`、`icon.py`；`build.py all`、`sheet`、`fluttercheck`），約定在 `docs/art.md`；聲音：`design/sounds/make_sounds.py`（45 個檔）。
 
 ## 目前的狀態（2026-11-15）
-- 0.1.0 已發布（2026-11-15）：Releases 有三個 APK，App 和 Release 都成功；Secrets 加好了（第一次密碼貼錯，重貼後重新執行才成功）。
-- 0.1.1 準備好了、**還沒發布**（在工作分支上，推 `main` 要先問使用者）：檢查程式後修的問題——做完一步幫手的「為什麼」說完才換下一步、第二隻手指不會害按住或拖的東西放掉、家長模式的時間不算玩的時間、語音一開始不會互相打斷、最後一個世界不能關。測試在 `app/test/screens_test.dart`。
+- 0.1.1 已發布（2026-11-15）：Releases 有三個 APK，App 和 Release 都成功（0.1.0 同一天發布；第一次 Secrets 密碼貼錯，重貼後才成功）。修的問題：檢查程式後修的問題——做完一步幫手的「為什麼」說完才換下一步、第二隻手指不會害按住或拖的東西放掉、家長模式的時間不算玩的時間、語音一開始不會互相打斷、最後一個世界不能關。測試在 `app/test/screens_test.dart`。
 - 還沒在真手機上試過：TTS 的聲音和速度、拖東西和按住的手感、聲音好不好聽（做的時候沒辦法用耳朵聽），要使用者裝到手機後再看。
