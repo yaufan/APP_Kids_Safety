@@ -294,20 +294,27 @@ class _HoldButtonState extends ConsumerState<HoldButton> with SingleTickerProvid
     });
   var _on = false;
 
+  /// The finger holding it (another finger tapping beside it is left alone).
+  int? _pointer;
+
   @override
   void dispose() {
     _c.dispose();
     super.dispose();
   }
 
-  void _down() {
+  void _down(PointerDownEvent e) {
+    if (_pointer != null) return;
+    _pointer = e.pointer;
     _on = true;
     final l = widget.loopSfx;
     if (l != null) sfx(ref, l);
     _c.forward(from: 0);
   }
 
-  void _up() {
+  void _up(PointerEvent e) {
+    if (e.pointer != _pointer) return;
+    _pointer = null;
     if (!_on) return;
     _on = false;
     final secs = _c.value * widget.seconds;
@@ -323,9 +330,9 @@ class _HoldButtonState extends ConsumerState<HoldButton> with SingleTickerProvid
         label: widget.label,
         excludeSemantics: true,
         child: Listener(
-          onPointerDown: (_) => _down(),
-          onPointerUp: (_) => _up(),
-          onPointerCancel: (_) => _up(),
+          onPointerDown: _down,
+          onPointerUp: _up,
+          onPointerCancel: _up,
           child: SizedBox(
             width: 150,
             height: 150,

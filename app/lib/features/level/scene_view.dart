@@ -68,6 +68,9 @@ class SceneView extends StatefulWidget {
 }
 
 class _SceneViewState extends State<SceneView> with SingleTickerProviderStateMixin {
+  /// The one finger that counts (a second finger or a resting palm is left
+  /// alone: it must not drop, move or let go of what the first one does).
+  int? _pointer;
   String? _held;
   Offset _at = Offset.zero;
   Offset? _down;
@@ -144,7 +147,8 @@ class _SceneViewState extends State<SceneView> with SingleTickerProviderStateMix
   }
 
   void _down0(PointerDownEvent e, Size size) {
-    if (_held != null) return;
+    if (_pointer != null) return;
+    _pointer = e.pointer;
     final p = e.localPosition;
     final ids = _under(p, size);
     for (final id in ids) {
@@ -168,6 +172,7 @@ class _SceneViewState extends State<SceneView> with SingleTickerProviderStateMix
   }
 
   void _move(PointerMoveEvent e, Size size) {
+    if (e.pointer != _pointer) return;
     final h = _held;
     if (h == null) return;
     final p = e.localPosition;
@@ -179,7 +184,12 @@ class _SceneViewState extends State<SceneView> with SingleTickerProviderStateMix
     setState(() => _at = p);
   }
 
-  void _up(Offset p, Size size) {
+  /// The finger lifts ([cancel]: the phone took the touch away, so it is
+  /// not a tap and the thing held goes back instead of being dropped).
+  void _up(PointerEvent e, Size size, {bool cancel = false}) {
+    if (e.pointer != _pointer) return;
+    _pointer = null;
+    final p = e.localPosition;
     if (_holding) {
       _holding = false;
       final secs = _hold.value * widget.holdSeconds;
@@ -191,12 +201,12 @@ class _SceneViewState extends State<SceneView> with SingleTickerProviderStateMix
     final h = _held;
     if (h != null) {
       setState(() => _held = null);
-      widget.onDrop(h, _under(p, size, except: h));
+      if (!cancel) widget.onDrop(h, _under(p, size, except: h));
       return;
     }
     final d = _down;
     _down = null;
-    if (d != null && (d - p).distance < 30) widget.onTap(_under(p, size));
+    if (!cancel && d != null && (d - p).distance < 30) widget.onTap(_under(p, size));
   }
 
   @override
@@ -288,8 +298,8 @@ class _SceneViewState extends State<SceneView> with SingleTickerProviderStateMix
                 behavior: HitTestBehavior.opaque,
                 onPointerDown: (e) => _down0(e, size),
                 onPointerMove: (e) => _move(e, size),
-                onPointerUp: (e) => _up(e.localPosition, size),
-                onPointerCancel: (e) => _up(e.localPosition, size),
+                onPointerUp: (e) => _up(e, size),
+                onPointerCancel: (e) => _up(e, size, cancel: true),
                 child: stack,
               );
             }),
