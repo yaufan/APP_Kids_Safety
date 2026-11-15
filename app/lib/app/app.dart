@@ -88,7 +88,7 @@ class SafetyApp extends ConsumerWidget {
 /// base to rest, the helmet is hung up and the child is sent to try it for
 /// real; an hour later (or when a parent says so) play can go on. Away from
 /// the app for ten minutes counts as a rest. Parent mode and the parent's
-/// note are never stopped.
+/// note are never stopped, and the time spent there is not play time.
 class RestGuard extends ConsumerStatefulWidget {
   const RestGuard({super.key, required this.child});
 
@@ -105,6 +105,9 @@ class _RestGuardState extends ConsumerState<RestGuard> {
   Timer? _timer;
   AppLifecycleListener? _life;
   DateTime? _away;
+
+  /// When a parent went into parent mode (or the note before 身體世界).
+  DateTime? _parentSince;
 
   @override
   void initState() {
@@ -135,7 +138,18 @@ class _RestGuardState extends ConsumerState<RestGuard> {
     final g = ref.read(gameProvider);
     final router = ref.read(routerProvider);
     final path = router.state.matchedLocation;
-    if (path.startsWith('/parent') || path.startsWith('/intro')) return;
+    final session = ref.read(sessionStartProvider.notifier);
+    // Parent mode and the parent's note are a grown-up's time: the child's
+    // clock waits, and goes on where it was when the parent is done.
+    if (path.startsWith('/parent') || path.startsWith('/intro')) {
+      _parentSince ??= now;
+      return;
+    }
+    final since = _parentSince;
+    _parentSince = null;
+    if (since != null) session.skip(now.difference(since));
+    // A clock moved back: the sitting starts again from now.
+    if (now.isBefore(ref.read(sessionStartProvider))) session.restart();
     if (g.restSince != null) {
       if (g.resting(now)) {
         if (path != '/rest') router.go('/rest');

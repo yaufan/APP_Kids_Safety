@@ -31,7 +31,8 @@ class GameNotifier extends Notifier<Game> {
 }
 
 /// When this sitting started (reset when a parent lets play go on, or after
-/// ten minutes away from the app).
+/// ten minutes away from the app; moved on by the time spent in parent mode,
+/// which is not the child's play time).
 final sessionStartProvider = NotifierProvider<SessionStart, DateTime>(SessionStart.new);
 
 class SessionStart extends Notifier<DateTime> {
@@ -39,4 +40,9 @@ class SessionStart extends Notifier<DateTime> {
   DateTime build() => ref.read(clockProvider)();
 
   void restart() => state = ref.read(clockProvider)();
+
+  /// Leaves [d] out of the sitting (a parent was in parent mode).
+  void skip(Duration d) {
+    if (!d.isNegative) state = state.add(d);
+  }
 }
