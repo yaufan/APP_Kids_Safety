@@ -400,18 +400,18 @@ List<Part> _typhoon(bool big) => [
 
 /// The places on the squad member in a swimsuit, and their light.
 const bodySpots = [
-  ('head', '頭', 'green', .42, .14, '綠燈：頭，拍拍頭可以。'),
-  ('shoulder', '肩膀', 'green', .53, .34, '綠燈：肩膀，拍拍肩膀可以。'),
-  ('hand', '手', 'green', .7, .56, '綠燈：手，握手、擊掌都可以。'),
-  ('face', '臉', 'yellow', .42, .22, '黃燈：臉，要先問我喔。'),
-  ('tummy', '肚子', 'yellow', .42, .44, '黃燈：肚子，要先問我喔。'),
-  ('swim', '泳衣遮住的地方', 'red', .42, .6, '紅燈：泳衣遮住的地方是我自己的，別人不可以看、不可以摸。'),
+  ('head', '頭', 'green', .42, .23, '綠燈：頭，拍拍頭可以。'),
+  ('shoulder', '肩膀', 'green', .35, .56, '綠燈：肩膀，拍拍肩膀可以。'),
+  ('hand', '手', 'green', .575, .73, '綠燈：手，握手、擊掌都可以。'),
+  ('face', '臉', 'yellow', .465, .43, '黃燈：臉，要先問我喔。'),
+  ('tummy', '肚子', 'yellow', .42, .68, '黃燈：肚子，要先問我喔。'),
+  ('swim', '泳衣遮住的地方', 'red', .42, .78, '紅燈：泳衣遮住的地方是我自己的，別人不可以看、不可以摸。'),
 ];
 
 List<Part> _bodyLights(bool big) {
   final scene = Scene('body/pool', [
     _hero(Look(pose('swim'), .42, .52, .4, .96)),
-    for (final (id, zh, light, x, y, _) in bodySpots) Sprite(id, zh, Look('body/dot_white', x, y, .08, .1), arts: {'lit': 'body/dot_$light'}),
+    for (final (id, zh, light, x, y, _) in bodySpots) Sprite(id, zh, Look('body/dot_white', x, y, .07, .09), arts: {'lit': 'body/dot_$light'}),
     _helper(Helper.bunny, .86, .78),
   ]);
   ChooseStep ask(String id) {
